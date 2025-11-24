@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Users - Caregiver Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-users"></i> Users</h1>
+    <a href="{{ url_for('users_create') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add User
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.given_name }} {{ user.surname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.phone_number }}</td>
+                        <td>
+                            <a href="{{ url_for('users_edit', user_id=user.user_id) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form method="POST" action="{{ url_for('users_delete', user_id=user.user_id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

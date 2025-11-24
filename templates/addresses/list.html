@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Addresses{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-map-marker-alt"></i> Addresses</h1>
+    <a href="{{ url_for('addresses_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Address</a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Member</th><th>Address</th><th>Town</th><th>Actions</th></tr></thead>
+                <tbody>
+                    {% for address, user in addresses %}
+                    <tr>
+                        <td>{{ user.given_name }} {{ user.surname }}</td>
+                        <td>{{ address.house_number }} {{ address.street }}</td>
+                        <td>{{ address.town }}</td>
+                        <td>
+                            <a href="{{ url_for('addresses_edit', member_id=address.member_user_id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <form method="POST" action="{{ url_for('addresses_delete', member_id=address.member_user_id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Edit Job Application{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-edit"></i> Edit Job Application</h1>
+    <a href="{{ url_for('applications_list') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label>Caregiver</label>
+                <input type="text" class="form-control" value="{{ caregiver_user.given_name }} {{ caregiver_user.surname }}" disabled>
+                <small class="text-muted">Caregiver cannot be changed</small>
+            </div>
+            <div class="mb-3">
+                <label>Job</label>
+                <input type="text" class="form-control" value="Job #{{ job.job_id }} - {{ job.required_caregiving_type }}" disabled>
+                <small class="text-muted">Job cannot be changed</small>
+            </div>
+            <div class="mb-3">
+                <label>Date Applied *</label>
+                <input type="date" name="date_applied" class="form-control" value="{{ application.date_applied }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update Application</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

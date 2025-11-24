@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Caregiver - Caregiver Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-user-edit"></i> Edit Caregiver</h1>
+    <a href="{{ url_for('caregivers_list') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="alert alert-info">
+            <strong>User:</strong> {{ user.given_name }} {{ user.surname }} ({{ user.email }})
+        </div>
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Caregiving Type *</label>
+                    <select name="caregiving_type" class="form-select" required>
+                        <option value="Babysitter" {% if caregiver.caregiving_type == 'Babysitter' %}selected{% endif %}>Babysitter</option>
+                        <option value="Elderly Care" {% if caregiver.caregiving_type == 'Elderly Care' %}selected{% endif %}>Elderly Care</option>
+                        <option value="Playmate" {% if caregiver.caregiving_type == 'Playmate' %}selected{% endif %}>Playmate</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Gender *</label>
+                    <select name="gender" class="form-select" required>
+                        <option value="Male" {% if caregiver.gender == 'Male' %}selected{% endif %}>Male</option>
+                        <option value="Female" {% if caregiver.gender == 'Female' %}selected{% endif %}>Female</option>
+                        <option value="Other" {% if caregiver.gender == 'Other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Hourly Rate ($) *</label>
+                    <input type="number" step="0.01" name="hourly_rate" class="form-control" value="{{ caregiver.hourly_rate }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Photo URL</label>
+                    <input type="text" name="photo" class="form-control" value="{{ caregiver.photo }}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Update Caregiver
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

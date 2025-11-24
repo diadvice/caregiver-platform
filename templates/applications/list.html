@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Job Applications{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-file-alt"></i> Job Applications</h1>
+    <a href="{{ url_for('applications_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Apply</a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Applicant</th><th>Job ID</th><th>Job Type</th><th>Date Applied</th><th>Actions</th></tr></thead>
+                <tbody>
+                    {% for app, caregiver_user, job in applications %}
+                    <tr>
+                        <td>{{ caregiver_user.given_name }} {{ caregiver_user.surname }}</td>
+                        <td>{{ job.job_id }}</td>
+                        <td><span class="badge bg-info">{{ job.required_caregiving_type }}</span></td>
+                        <td>{{ app.date_applied }}</td>
+                        <td>
+                            <a href="{{ url_for('applications_edit', caregiver_id=app.caregiver_user_id, job_id=app.job_id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <form method="POST" action="{{ url_for('applications_delete', caregiver_id=app.caregiver_user_id, job_id=app.job_id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

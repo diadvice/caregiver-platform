@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Edit User - Caregiver Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-user-edit"></i> Edit User</h1>
+    <a href="{{ url_for('users_list') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Given Name *</label>
+                    <input type="text" name="given_name" class="form-control" value="{{ user.given_name }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Surname *</label>
+                    <input type="text" name="surname" class="form-control" value="{{ user.surname }}" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email *</label>
+                    <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="text" name="phone_number" class="form-control" value="{{ user.phone_number }}" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">City *</label>
+                    <input type="text" name="city" class="form-control" value="{{ user.city }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Password (leave empty to keep current)</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Profile Description</label>
+                <textarea name="profile_description" class="form-control" rows="3">{{ user.profile_description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Update User
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

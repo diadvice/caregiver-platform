@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Appointments{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-calendar-check"></i> Appointments</h1>
+    <a href="{{ url_for('appointments_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Create Appointment</a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>ID</th><th>Caregiver</th><th>Member</th><th>Date & Time</th><th>Hours</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody>
+                    {% for appt, caregiver_user, member_user in appointments %}
+                    <tr>
+                        <td>{{ appt.appointment_id }}</td>
+                        <td>{{ caregiver_user.given_name }} {{ caregiver_user.surname }}</td>
+                        <td>{{ member_user.given_name }} {{ member_user.surname }}</td>
+                        <td>{{ appt.appointment_date }} {{ appt.appointment_time }}</td>
+                        <td>{{ appt.work_hours }}h</td>
+                        <td>
+                            {% if appt.status == 'accepted' %}
+                            <span class="badge bg-success">{{ appt.status }}</span>
+                            {% elif appt.status == 'pending' %}
+                            <span class="badge bg-warning">{{ appt.status }}</span>
+                            {% else %}
+                            <span class="badge bg-danger">{{ appt.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('appointments_edit', appointment_id=appt.appointment_id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                            <form method="POST" action="{{ url_for('appointments_delete', appointment_id=appt.appointment_id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

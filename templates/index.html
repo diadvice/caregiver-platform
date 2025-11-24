@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Caregiver Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card card-stats border-0 shadow-sm" style="border-left-color: #667eea !important;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Caregivers</p>
+                        <h3 class="mb-0">{{ stats.caregivers }}</h3>
+                    </div>
+                    <div class="text-primary">
+                        <i class="fas fa-user-nurse fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats border-0 shadow-sm" style="border-left-color: #28a745 !important;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Members</p>
+                        <h3 class="mb-0">{{ stats.members }}</h3>
+                    </div>
+                    <div class="text-success">
+                        <i class="fas fa-user-friends fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats border-0 shadow-sm" style="border-left-color: #ffc107 !important;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Jobs Posted</p>
+                        <h3 class="mb-0">{{ stats.jobs }}</h3>
+                    </div>
+                    <div class="text-warning">
+                        <i class="fas fa-briefcase fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats border-0 shadow-sm" style="border-left-color: #dc3545 !important;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-muted mb-1">Appointments</p>
+                        <h3 class="mb-0">{{ stats.appointments }}</h3>
+                    </div>
+                    <div class="text-danger">
+                        <i class="fas fa-calendar-check fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> About This Platform</h5>
+            </div>
+            <div class="card-body">
+                <p>Welcome to the Caregiver Platform - a comprehensive solution for connecting caregivers with families in need of care services.</p>
+                <h6 class="mt-3">Features:</h6>
+                <ul>
+                    <li><strong>User Management:</strong> Register and manage users, caregivers, and family members</li>
+                    <li><strong>Job Postings:</strong> Members can post job advertisements for caregiver positions</li>
+                    <li><strong>Applications:</strong> Caregivers can apply for jobs that match their skills</li>
+                    <li><strong>Appointments:</strong> Schedule and manage caregiving appointments</li>
+                    <li><strong>Search & Filter:</strong> Find caregivers by type, city, and other criteria</li>
+                </ul>
+                <h6 class="mt-3">Caregiving Types:</h6>
+                <div class="row mt-2">
+                    <div class="col-md-4">
+                        <div class="alert alert-info">
+                            <i class="fas fa-baby"></i> <strong>Babysitter</strong><br>
+                            <small>Professional childcare services</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-success">
+                            <i class="fas fa-user-md"></i> <strong>Elderly Care</strong><br>
+                            <small>Compassionate care for seniors</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-child"></i> <strong>Playmate</strong><br>
+                            <small>Engaging activities for children</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

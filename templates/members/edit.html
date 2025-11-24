@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Edit Member{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2"><i class="fas fa-user-edit"></i> Edit Member</h1>
+    <a href="{{ url_for('members_list') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="alert alert-info"><strong>User:</strong> {{ user.given_name }} {{ user.surname }}</div>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">House Rules</label>
+                <textarea name="house_rules" class="form-control" rows="3">{{ member.house_rules }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dependent Description</label>
+                <textarea name="dependent_description" class="form-control" rows="3">{{ member.dependent_description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
